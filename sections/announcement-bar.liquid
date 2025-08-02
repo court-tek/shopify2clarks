@@ -5,9 +5,9 @@
 <div class="announe-bar1">
   {%- if section.blocks.first.settings.text != blank -%}
     {%- if section.blocks.first.settings.link != blank -%}
-      <a href="{{ section.blocks.first.settings.link }}">
+      <a class="announce-bar1__link" href="{{ section.blocks.first.settings.link }}">
     {%- endif -%}
-    <span>{{ section.blocks.first.settings.text | escape }}</span>
+    <span class="announce-bar1__text">{{ section.blocks.first.settings.text | escape }}</span>
     {%- if section.blocks.first.settings.link != blank -%}
       </a>
     {%- endif -%}
