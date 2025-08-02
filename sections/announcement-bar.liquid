@@ -1,9 +1,9 @@
-<div class="announce-bar1">
+<div class="announce-bar1" style="background: {{ section.settings.background_color }}">
   {%- if section.blocks.first.settings.text != blank -%}
     {%- if section.blocks.first.settings.link != blank -%}
       <a class="announce-bar1__link" href="{{ section.blocks.first.settings.link }}">
     {%- endif -%}
-    <span class="announce-bar1__text">{{ section.blocks.first.settings.text | escape }}</span>
+    <span class="announce-bar1__text" style="color: {{ section.settings.text_color }}">{{ section.blocks.first.settings.text | escape }}</span>
     {%- if section.blocks.first.settings.link != blank -%}
       </a>
     {%- endif -%}
