@@ -26,7 +26,7 @@
       }
     },
     "header": {
-      "type": "header",
+      "type": "navigation",
       "settings": {
         "color_scheme": "scheme-1",
         "logo_position": "middle-left",
@@ -46,6 +46,6 @@
   "order": [
     "announcement-bar",
     "support-bar",
-    "header"
+    "navigation"
   ]
 }
