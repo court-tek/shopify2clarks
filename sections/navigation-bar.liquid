@@ -560,9 +560,12 @@
 </header>
 {% schema %}
 {
-  "name": "Navigation",
-  "class": "section-header",
+  "name": "Navigation Bar",
   "max_blocks": 3,
+  "class": "navigation-bar-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
   "settings": [
     {
       "type": "select",
@@ -744,6 +747,12 @@
   "blocks": [
     {
       "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Navigation Bar",
+      "blocks": []
     }
   ]
 }
