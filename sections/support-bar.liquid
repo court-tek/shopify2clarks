@@ -70,8 +70,11 @@
 {% schema %}
 {
   "name": "Support Bar",
-  "class": "section-support-bar",
+  "class": "support-bar-section",
   "max_blocks": 3,
+  "enabled_on": {
+    "groups": ["header"]
+  },
   "settings": [
      {
       "type": "color",
@@ -84,42 +87,6 @@
       "id": "menu",
       "default": "main-menu",
       "label": "t:sections.header.settings.menu.label"
-    },
-    {
-      "type": "select",
-      "id": "sticky_header_type",
-      "options": [
-        {
-          "value": "none",
-          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
-        },
-        {
-          "value": "on-scroll-up",
-          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
-        },
-        {
-          "value": "always",
-          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
-        },
-        {
-          "value": "reduce-logo-size",
-          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
-        }
-      ],
-      "default": "on-scroll-up",
-      "label": "t:sections.header.settings.sticky_header_type.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_line_separator",
-      "default": true,
-      "label": "t:sections.header.settings.show_line_separator.label"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
     },
     {
       "type": "checkbox",
@@ -137,8 +104,22 @@
     },
   ],
   "blocks": [
-    {
-      "type": "@app"
+     {
+      "type": "support-bar",
+      "name": "t:sections.support-bar.blocks.support.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "t:sections.support-bar.blocks.support.settings.text.default",
+          "label": "t:sections.support-bar.blocks.support.settings.text.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.support-bar.blocks.support.settings.link.label"
+        }
+      ]
     }
   ],
   "presets": [
