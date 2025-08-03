@@ -1,563 +1,1178 @@
-<header class="header2">
-  <div class="header2__wrapper container-xl">
-    <a class="header2__logo">
-      <img
-        class="header2__logo-link"
-        loading="lazy"
-        src="https://raw.githubusercontent.com/court-tek/bootstraplp/main/assets/img/Clarks_logo.png"
-      >
-      {% comment %} <h2 class="header2__logo-text header2__logo-text--fs-400">clarksclone1</h2> {% endcomment %}
-    </a>
-    <div class="header2__navigation-wrapper">
-      <nav class="header2__navigation">
-        <ul class="header2__list">
-          <li class="header2__list-item has-submenu">
-            <a href="#">
-              <span class="header2__link-title header2__link-title--sale">sale</span>
-            </a>
-            <div class="header2__submenu-wrapper">
-              <div class="header2__submenu-grid">
-                <div class="header2__submenu-item header2__submenu-item1">
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">all sale</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link 01</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link 02</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link 03</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">limited time offers</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link 01</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link 02</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link 03</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item2">
-                  <img
-                    class="header2__menu-image"
-                    alt=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                  >
-                  <div class="header2__menu-info">
-                    <span class="header2__copy-heading">summer savings event: up to 50% off</span>
-                    <a class="header2__link-to" href="#">shop now</a>
-                  </div>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item3">
-                  <img
-                    class="header2__menu-image"
-                    alt=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                    decoding="async"
-                    data-nimg="intrinsic"
-                  >
-                  <div class="header2__menu-info">
-                    <span class="header2__copy-heading">women's sale</span>
-                    <a class="header2__link-to" href="#">shop now</a>
-                  </div>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item4">
-                  <img
-                    class="header2__menu-image"
-                    alt=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                    decoding="async"
-                    data-nimg="intrinsic"
-                  >
-                  <div class="header2__menu-info">
-                    <span class="header2__copy-heading">men's sale</span>
-                    <a class="header2__link-to" href="#">shop now</a>
-                  </div>
-                </div>
-              </div>
+{% case section.settings.navigation_type %}
+  {% when 'header1' %}
+    <header class="header2">
+      <div class="header2__wrapper container-xl">
+        <div class="header2__left">
+          <a class="header2__logo">
+            {%- if settings.logo != blank -%}
+            <div class="">
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+              {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+              {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+              {{
+                settings.logo
+                | image_url: width: 600
+                | image_tag:
+                  class: 'header2__logo-link',
+                  widths: widths,
+                  height: logo_height,
+                  width: settings.logo_width,
+                  alt: logo_alt,
+                  sizes: sizes,
+                  preload: true
+              }}
             </div>
-          </li>
-          <li class="header2__list-item has-submenu">
-            <a href="#">
-              <span class="header2__link-title header2__link-title--underline">new</span>
-            </a>
-            <div class="header2__submenu-wrapper">
-              <div class="header2__submenu-grid">
-                <div class="header2__submenu-item header2__submenu-item1">
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">women's new arrivals</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">sneakers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">flats & loafers</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">men's new arrivals</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">sneakers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">slip-ons</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">loafers & oxfords</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">originals new arrivals</h2>
-                    </li>
-                  </ul>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item2">
-                  <img
-                    class="header2__menu-image"
-                    alt=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                    decoding="async"
-                    data-nimg="intrinsic"
-                  >
-                  <div class="header2__menu-info">
-                    <span class="header2__copy-heading">pace: coming soon</span>
-                    <a class="header2__link-to" href="#">sign up for early access</a>
+          {%- else -%}
+            <h2 class="header2__logo-text header2__logo-text--fs-300" style="min-width: {{ section.settings.logo_margin_left }}">clarks</h2>
+          {%- endif -%}
+          </a>
+          <div class="header2__navigation-wrapper">
+            <nav class="header2__navigation">
+              <ul class="header2__list">
+                <li class="header2__list-item has-submenu">
+                  <a href="#">
+                    <span class="header2__link-title header2__link-title--sale">sale</span>
+                  </a>
+                  <div class="header2__submenu-wrapper">
+                    <div class="header2__submenu-grid">
+                      <div class="header2__submenu-item header2__submenu-item1">
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">all sale</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link 01</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link 02</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link 03</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">limited time offers</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link 01</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link 02</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link 03</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item2">
+                        <img
+                          class="header2__menu-image"
+                          alt=""
+                          srcset="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                          src="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                        >
+                        <div class="header2__menu-info">
+                          <span class="header2__copy-heading">summer savings event: up to 50% off</span>
+                          <a class="header2__link-to" href="#">shop now</a>
+                        </div>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item3">
+                        <img
+                          class="header2__menu-image"
+                          alt=""
+                          srcset="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                          src="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                          decoding="async"
+                          data-nimg="intrinsic"
+                        >
+                        <div class="header2__menu-info">
+                          <span class="header2__copy-heading">women's sale</span>
+                          <a class="header2__link-to" href="#">shop now</a>
+                        </div>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item4">
+                        <img
+                          class="header2__menu-image"
+                          alt=""
+                          srcset="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                          src="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                          decoding="async"
+                          data-nimg="intrinsic"
+                        >
+                        <div class="header2__menu-info">
+                          <span class="header2__copy-heading">men's sale</span>
+                          <a class="header2__link-to" href="#">shop now</a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item3">
-                  <img
-                    class="header2__menu-image"
-                    alt=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                    decoding="async"
-                    data-nimg="intrinsic"
-                  >
-                  <div class="header2__menu-info">
-                    <span class="header2__copy-heading"
-                      >introducing solevana, the newest addition to cloudsteppers™</span
-                    >
-                    <a class="header2__link-to" href="#">shop solevana</a>
-                  </div>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item4">
-                  <img
-                    class="header2__menu-image"
-                    alt=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                    decoding="async"
-                    data-nimg="intrinsic"
-                  >
-                  <div class="header2__menu-info">
-                    <span class="header2__copy-heading">clarks originals™ kids</span>
-                    <a class="header2__link-to" href="#">shop now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="header2__list-item has-submenu">
-            <a href="#">
-              <span class="header2__link-title header2__link-title--underline">women</span>
-            </a>
-            <div class="header2__submenu-wrapper">
-              <div class="header2__submenu-grid">
-                <div class="header2__submenu-item header2__submenu-item1">
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">new & featured</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">new arrivals</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">best sellers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">top-rated</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">wide fit</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">sale</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">sandals</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#"
-                            >special offer: $34.99 flip flops</a
+                </li>
+                <li class="header2__list-item has-submenu">
+                  <a href="#">
+                    <span class="header2__link-title header2__link-title--underline">new</span>
+                  </a>
+                  <div class="header2__submenu-wrapper">
+                    <div class="header2__submenu-grid">
+                      <div class="header2__submenu-item header2__submenu-item1">
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">women's new arrivals</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">sneakers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >flats & loafers</a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">men's new arrivals</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">sneakers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">slip-ons</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >loafers & oxfords</a
+                                >
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">originals new arrivals</h2>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item2">
+                        <img
+                          class="header2__menu-image"
+                          alt=""
+                          srcset="https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                          src="https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                          decoding="async"
+                          data-nimg="intrinsic"
+                        >
+                        <div class="header2__menu-info">
+                          <span class="header2__copy-heading">pace: coming soon</span>
+                          <a class="header2__link-to" href="#">sign up for early access</a>
+                        </div>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item3">
+                        <img
+                          class="header2__menu-image"
+                          alt=""
+                          srcset="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                          src="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                          decoding="async"
+                          data-nimg="intrinsic"
+                        >
+                        <div class="header2__menu-info">
+                          <span class="header2__copy-heading"
+                            >introducing solevana, the newest addition to cloudsteppers™</span
                           >
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">dress & occasion</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">sandals</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#"
-                            >special offer: $34.99 flip flops</a
-                          >
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">dress & occasion</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item2">
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">new & featured</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">new arrivals</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">best sellers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">top-rated</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">wide fit</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">sale</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">sandals</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#"
-                            >special offer: $34.99 flip flops</a
-                          >
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">dress & occasion</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">sandals</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#"
-                            >special offer: $34.99 flip flops</a
-                          >
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">dress & occasion</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item3">
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">new & featured</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">new arrivals</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">best sellers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">top-rated</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">wide fit</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">sale</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">sandals</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#"
-                            >special offer: $34.99 flip flops</a
-                          >
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">dress & occasion</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <ul class="header2__links-list">
-                    <li>
-                      <h2 class="header2__submenu-category">sandals</h2>
-                      <ul>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#"
-                            >special offer: $34.99 flip flops</a
-                          >
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">dress & occasion</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                        <li class="header2__sub-list-item">
-                          <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-                <div class="header2__submenu-item header2__submenu-item4">
-                  <img
-                    class="header2__menu-image"
-                    alt=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                    decoding="async"
-                    data-nimg="intrinsic"
-                  >
-                  <div class="header2__menu-info">
-                    <span class="header2__copy-heading"
-                      >introducing solevana, the newest addition to cloudsteppers™</span
-                    >
-                    <a class="header2__link-to" href="#">shop solevana</a>
+                          <a class="header2__link-to" href="#">shop solevana</a>
+                        </div>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item4">
+                        <img
+                          class="header2__menu-image"
+                          alt=""
+                          srcset="https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                          src="https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                          decoding="async"
+                          data-nimg="intrinsic"
+                        >
+                        <div class="header2__menu-info">
+                          <span class="header2__copy-heading">clarks originals™ kids</span>
+                          <a class="header2__link-to" href="#">shop now</a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="header2__list-item has-submenu">
+                </li>
+                <li class="header2__list-item has-submenu">
+                  <a href="#">
+                    <span class="header2__link-title header2__link-title--underline">women</span>
+                  </a>
+                  <div class="header2__submenu-wrapper">
+                    <div class="header2__submenu-grid">
+                      <div class="header2__submenu-item header2__submenu-item1">
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">new & featured</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">new arrivals</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">best sellers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">top-rated</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">wide fit</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">sale</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">sandals</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >special offer: $34.99 flip flops</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >dress & occasion</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">sandals</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >special offer: $34.99 flip flops</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >dress & occasion</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item2">
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">new & featured</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">new arrivals</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">best sellers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">top-rated</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">wide fit</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">sale</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">sandals</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >special offer: $34.99 flip flops</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >dress & occasion</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">sandals</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >special offer: $34.99 flip flops</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >dress & occasion</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item3">
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">new & featured</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">new arrivals</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">best sellers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">top-rated</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">wide fit</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">sale</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">sandals</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >special offer: $34.99 flip flops</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >dress & occasion</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                        <ul class="header2__links-list">
+                          <li>
+                            <h2 class="header2__submenu-category">sandals</h2>
+                            <ul>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">comfort</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">walking</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >special offer: $34.99 flip flops</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">cloudsteppers</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#"
+                                  >dress & occasion</a
+                                >
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                              <li class="header2__sub-list-item">
+                                <a class="header2__sub-link header2__sub-link--underline" href="#">link</a>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="header2__submenu-item header2__submenu-item4">
+                        <img
+                          class="header2__menu-image"
+                          alt=""
+                          srcset="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                          src="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                          decoding="async"
+                          data-nimg="intrinsic"
+                        >
+                        <div class="header2__menu-info">
+                          <span class="header2__copy-heading"
+                            >introducing solevana, the newest addition to cloudsteppers™</span
+                          >
+                          <a class="header2__link-to" href="#">shop solevana</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="header2__list-item has-submenu">
+                  <a href="#">
+                    <span class="header2__link-title header2__link-title--underline">men</span>
+                  </a>
+                  <div class="header2__submenu-wrapper">
+                    <div class="header2__list-wrapper">Clarks</div>
+                  </div>
+                </li>
+                <li class="header2__list-item has-submenu">
+                  <a href="#">
+                    <span class="header2__link-title header2__link-title--underline">originals</span>
+                  </a>
+                  <div class="header2__submenu-wrapper">
+                    <div class="header2__list-wrapper">Clarks</div>
+                  </div>
+                </li>
+                <li class="header2__list-item has-submenu">
+                  <a href="#">
+                    <span class="header2__link-title header2__link-title--underline">kids</span>
+                  </a>
+                  <div class="header2__submenu-wrapper">
+                    <div class="header2__list-wrapper">Clarks</div>
+                  </div>
+                </li>
+                <li class="header2__list-item has-submenu">
+                  <a href="#">
+                    <span class="header2__link-title header2__link-title--underline">accessories</span>
+                  </a>
+                  <div class="header2__submenu-wrapper">
+                    <div class="header2__list-wrapper">Clarks</div>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="header2__right">
+          <div class="header2__user">
             <a href="#">
-              <span class="header2__link-title header2__link-title--underline">men</span>
+              <svg
+                class="bi bi-search"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+              </svg>
             </a>
-            <div class="header2__submenu-wrapper">
-              <div class="header2__list-wrapper">Clarks</div>
-            </div>
-          </li>
-          <li class="header2__list-item has-submenu">
             <a href="#">
-              <span class="header2__link-title header2__link-title--underline">originals</span>
+              <svg
+                class="bi bi-person"
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+              </svg>
             </a>
-            <div class="header2__submenu-wrapper">
-              <div class="header2__list-wrapper">Clarks</div>
-            </div>
-          </li>
-          <li class="header2__list-item has-submenu">
             <a href="#">
-              <span class="header2__link-title header2__link-title--underline">kids</span>
+              <svg
+                class="bi bi-bag"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+              </svg>
             </a>
-            <div class="header2__submenu-wrapper">
-              <div class="header2__list-wrapper">Clarks</div>
-            </div>
-          </li>
-          <li class="header2__list-item has-submenu">
-            <a href="#">
-              <span class="header2__link-title header2__link-title--underline">accessories</span>
+            <a href="#" class="header2__hamburger burger-menu">
+              <svg
+                class="bi bi-list"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+              </svg>
             </a>
-            <div class="header2__submenu-wrapper">
-              <div class="header2__list-wrapper">Clarks</div>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="header2__right">
-      <div class="header2__user">
-        <a href="#">
-          <svg
-            class="bi bi-search"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-          </svg>
-        </a>
-        <a href="#">
-          <svg
-            class="bi bi-person"
-            xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-          </svg>
-        </a>
-        <a href="#">
-          <svg
-            class="bi bi-bag"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
-          </svg>
-        </a>
-        <a href="#" class="header2__hamburger burger-menu">
-          <svg
-            class="bi bi-list"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
-          </svg>
-        </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</header>
+    </header>
+  {% when 'header2' %}
+    <header class="header3">
+      <div class="header3__wrapper container-xl">
+        <a class="header3__logo">
+          {%- if settings.logo != blank -%}
+            <div class="header__heading-logo-wrapper">
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+              {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+              {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+              {{
+                settings.logo
+                | image_url: width: 600
+                | image_tag:
+                  class: 'header3__logo-link',
+                  widths: widths,
+                  height: logo_height,
+                  width: settings.logo_width,
+                  alt: logo_alt,
+                  sizes: sizes,
+                  preload: true
+              }}
+            </div>
+          {%- else -%}
+            <h2 class="header3__logo-text header3__logo-text--fs-50">clarks</h2>
+          {%- endif -%}
+        </a>
+        <div class="header3__navigation-wrapper">
+          <nav class="header3__navigation">
+            <ul class="header3__list">
+              <li class="header3__list-item has-submenu">
+                <a href="#">
+                  <span class="header3__link-title header3__link-title--sale">sale</span>
+                </a>
+                <div class="header3__submenu-wrapper">
+                  <div class="header3__submenu-grid">
+                    <div class="header3__submenu-item header3__submenu-item1">
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">all sale</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link 01</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link 02</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link 03</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">limited time offers</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link 01</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link 02</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link 03</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item2">
+                      <img
+                        class="header3__menu-image"
+                        alt=""
+                        srcset="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                        src="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                      >
+                      <div class="header3__menu-info">
+                        <span class="header3__copy-heading">summer savings event: up to 50% off</span>
+                        <a class="header3__link-to" href="#">shop now</a>
+                      </div>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item3">
+                      <img
+                        class="header3__menu-image"
+                        alt=""
+                        srcset="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                        src="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                        decoding="async"
+                        data-nimg="intrinsic"
+                      >
+                      <div class="header3__menu-info">
+                        <span class="header3__copy-heading">women's sale</span>
+                        <a class="header3__link-to" href="#">shop now</a>
+                      </div>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item4">
+                      <img
+                        class="header3__menu-image"
+                        alt=""
+                        srcset="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                        src="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                        decoding="async"
+                        data-nimg="intrinsic"
+                      >
+                      <div class="header3__menu-info">
+                        <span class="header3__copy-heading">men's sale</span>
+                        <a class="header3__link-to" href="#">shop now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="header3__list-item has-submenu">
+                <a href="#">
+                  <span class="header3__link-title header3__link-title--underline">new</span>
+                </a>
+                <div class="header3__submenu-wrapper">
+                  <div class="header3__submenu-grid">
+                    <div class="header3__submenu-item header3__submenu-item1">
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">women's new arrivals</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">sneakers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">flats & loafers</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">men's new arrivals</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">sneakers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">slip-ons</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">loafers & oxfords</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">originals new arrivals</h2>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item2">
+                      <img
+                        class="header3__menu-image"
+                        alt=""
+                        srcset="https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                        src="https://cdn.media.amplience.net/i/clarks/pace_nav_card_us?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                        decoding="async"
+                        data-nimg="intrinsic"
+                      >
+                      <div class="header3__menu-info">
+                        <span class="header3__copy-heading">pace: coming soon</span>
+                        <a class="header3__link-to" href="#">sign up for early access</a>
+                      </div>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item3">
+                      <img
+                        class="header3__menu-image"
+                        alt=""
+                        srcset="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                        src="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                        decoding="async"
+                        data-nimg="intrinsic"
+                      >
+                      <div class="header3__menu-info">
+                        <span class="header3__copy-heading"
+                          >introducing solevana, the newest addition to cloudsteppers™</span
+                        >
+                        <a class="header3__link-to" href="#">shop solevana</a>
+                      </div>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item4">
+                      <img
+                        class="header3__menu-image"
+                        alt=""
+                        srcset="https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                        src="https://cdn.media.amplience.net/i/clarks/AW25_CLARKS_ORIGINALS_KIDS_DESERT_TREK_BLACK_LEATHER_26168132?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                        decoding="async"
+                        data-nimg="intrinsic"
+                      >
+                      <div class="header3__menu-info">
+                        <span class="header3__copy-heading">clarks originals™ kids</span>
+                        <a class="header3__link-to" href="#">shop now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="header3__list-item has-submenu">
+                <a href="#">
+                  <span class="header3__link-title header3__link-title--underline">women</span>
+                </a>
+                <div class="header3__submenu-wrapper">
+                  <div class="header3__submenu-grid">
+                    <div class="header3__submenu-item header3__submenu-item1">
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">new & featured</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">new arrivals</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">best sellers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">top-rated</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">wide fit</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">sale</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">sandals</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">walking</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#"
+                                >special offer: $34.99 flip flops</a
+                              >
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">cloudsteppers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">dress & occasion</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">sandals</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">walking</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#"
+                                >special offer: $34.99 flip flops</a
+                              >
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">cloudsteppers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">dress & occasion</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item2">
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">new & featured</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">new arrivals</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">best sellers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">top-rated</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">wide fit</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">sale</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">sandals</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">walking</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#"
+                                >special offer: $34.99 flip flops</a
+                              >
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">cloudsteppers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">dress & occasion</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">sandals</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">walking</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#"
+                                >special offer: $34.99 flip flops</a
+                              >
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">cloudsteppers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">dress & occasion</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item3">
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">new & featured</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">new arrivals</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">best sellers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">top-rated</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">wide fit</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">sale</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">sandals</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">walking</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#"
+                                >special offer: $34.99 flip flops</a
+                              >
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">cloudsteppers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">dress & occasion</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <ul class="header3__links-list">
+                        <li>
+                          <h2 class="header3__submenu-category">sandals</h2>
+                          <ul>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">comfort</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">walking</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#"
+                                >special offer: $34.99 flip flops</a
+                              >
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">cloudsteppers</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">dress & occasion</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                            <li class="header3__sub-list-item">
+                              <a class="header3__sub-link header3__sub-link--underline" href="#">link</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="header3__submenu-item header3__submenu-item4">
+                      <img
+                        class="header3__menu-image"
+                        alt=""
+                        srcset="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                        src="https://cdn.media.amplience.net/i/clarks/26184289_Solevana_Nav_AW25?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                        decoding="async"
+                        data-nimg="intrinsic"
+                      >
+                      <div class="header3__menu-info">
+                        <span class="header3__copy-heading"
+                          >introducing solevana, the newest addition to cloudsteppers™</span
+                        >
+                        <a class="header3__link-to" href="#">shop solevana</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="header3__list-item has-submenu">
+                <a href="#">
+                  <span class="header3__link-title header3__link-title--underline">men</span>
+                </a>
+                <div class="header3__submenu-wrapper">
+                  <div class="header3__list-wrapper">Clarks</div>
+                </div>
+              </li>
+              <li class="header3__list-item has-submenu">
+                <a href="#">
+                  <span class="header3__link-title header3__link-title--underline">originals</span>
+                </a>
+                <div class="header3__submenu-wrapper">
+                  <div class="header3__list-wrapper">Clarks</div>
+                </div>
+              </li>
+              <li class="header3__list-item has-submenu">
+                <a href="#">
+                  <span class="header3__link-title header3__link-title--underline">kids</span>
+                </a>
+                <div class="header3__submenu-wrapper">
+                  <div class="header3__list-wrapper">Clarks</div>
+                </div>
+              </li>
+              <li class="header3__list-item has-submenu">
+                <a href="#">
+                  <span class="header3__link-title header3__link-title--underline">accessories</span>
+                </a>
+                <div class="header3__submenu-wrapper">
+                  <div class="header3__list-wrapper">Clarks</div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="header3__right">
+          <div class="header3__user">
+            <a href="#">
+              <svg
+                class="bi bi-search"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+              </svg>
+            </a>
+            <a href="#">
+              <svg
+                class="bi bi-person"
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+              </svg>
+            </a>
+            <a href="#">
+              <svg
+                class="bi bi-bag"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+              </svg>
+            </a>
+            <a href="#" class="header3__hamburger burger-menu">
+              <svg
+                class="bi bi-list"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+{% endcase %}
+
 {% schema %}
 {
   "name": "Navigation Bar",
@@ -569,44 +1184,29 @@
   "settings": [
     {
       "type": "select",
-      "id": "logo_position",
+      "id": "navigation_type",
+      "label": "Type Of Navigation",
       "options": [
         {
-          "value": "top-left",
-          "label": "t:sections.header.settings.logo_position.options__2.label"
+          "value": "header1",
+          "label": "Header 1"
         },
         {
-          "value": "top-center",
-          "label": "t:sections.header.settings.logo_position.options__3.label"
-        },
-        {
-          "value": "middle-left",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
-          "value": "middle-center",
-          "label": "t:sections.header.settings.logo_position.options__4.label"
+          "value": "header2",
+          "label": "Header 2"
         }
       ],
-      "default": "middle-left",
-      "label": "t:sections.header.settings.logo_position.label",
-      "info": "t:sections.header.settings.logo_help.content"
+      "default": "header1"
     },
     {
-      "type": "select",
-      "id": "mobile_logo_position",
-      "options": [
-        {
-          "value": "center",
-          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
-        },
-        {
-          "value": "left",
-          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
-        }
-      ],
-      "default": "center",
-      "label": "t:sections.header.settings.mobile_logo_position.label"
+      "type": "range",
+      "id": "logo_margin_left",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Logo Margin Left",
+      "default": 0
     },
     {
       "type": "link_list",
