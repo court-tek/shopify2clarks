@@ -27,6 +27,8 @@
             <h2 class="header2__logo-text header2__logo-text--fs-300" style="min-width: {{ section.settings.logo_margin_left }}">clarks</h2>
           {%- endif -%}
           </a>
+
+          {% if section.settings.menu != blank %}
           <div class="header2__navigation-wrapper">
             <nav class="header2__navigation">
               <ul class="header2__list">
@@ -539,6 +541,7 @@
               </ul>
             </nav>
           </div>
+          {% endif %}
         </div>
         <div class="header2__right">
           <div class="header2__user">
@@ -1219,19 +1222,11 @@
       "id": "menu_type_desktop",
       "options": [
         {
-          "value": "dropdown",
-          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
-        },
-        {
           "value": "mega",
           "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
         },
-        {
-          "value": "drawer",
-          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
-        }
       ],
-      "default": "dropdown",
+      "default": "mega",
       "label": "t:sections.header.settings.menu_type_desktop.label"
     },
     {

@@ -4,7 +4,87 @@
   Usage:
   {% render 'header-mega-menu' %}
 {% endcomment %}
-
+{% comment %} <div class="header2__submenu-wrapper">
+  <div class="header2__submenu-grid">
+    <div class="header2__submenu-item header2__submenu-item1">
+      <ul class="header2__links-list">
+        {%- for link in section.settings.menu.links -%}
+          <li>
+            <h2 class="header2__submenu-category">all sale</h2>
+            <ul>
+              <li class="header2__sub-list-item">
+                <a class="header2__sub-link header2__sub-link--underline" href="#">link 01</a>
+              </li>
+              <li class="header2__sub-list-item">
+                <a class="header2__sub-link header2__sub-link--underline" href="#">link 02</a>
+              </li>
+              <li class="header2__sub-list-item">
+                <a class="header2__sub-link header2__sub-link--underline" href="#">link 03</a>
+              </li>
+            </ul>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <ul class="header2__links-list">
+        <li>
+          <h2 class="header2__submenu-category">limited time offers</h2>
+          <ul>
+            <li class="header2__sub-list-item">
+              <a class="header2__sub-link header2__sub-link--underline" href="#">link 01</a>
+            </li>
+            <li class="header2__sub-list-item">
+              <a class="header2__sub-link header2__sub-link--underline" href="#">link 02</a>
+            </li>
+            <li class="header2__sub-list-item">
+              <a class="header2__sub-link header2__sub-link--underline" href="#">link 03</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="header2__submenu-item header2__submenu-item2">
+      <img
+        class="header2__menu-image"
+        alt=""
+        srcset="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+        src="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+      >
+      <div class="header2__menu-info">
+        <span class="header2__copy-heading">summer savings event: up to 50% off</span>
+        <a class="header2__link-to" href="#">shop now</a>
+      </div>
+    </div>
+    <div class="header2__submenu-item header2__submenu-item3">
+      <img
+        class="header2__menu-image"
+        alt=""
+        srcset="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+        src="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+        decoding="async"
+        data-nimg="intrinsic"
+      >
+      <div class="header2__menu-info">
+        <span class="header2__copy-heading">women's sale</span>
+        <a class="header2__link-to" href="#">shop now</a>
+      </div>
+    </div>
+    <div class="header2__submenu-item header2__submenu-item4">
+      <img
+        class="header2__menu-image"
+        alt=""
+        srcset="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+        src="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+        decoding="async"
+        data-nimg="intrinsic"
+      >
+      <div class="header2__menu-info">
+        <span class="header2__copy-heading">men's sale</span>
+        <a class="header2__link-to" href="#">shop now</a>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+{% comment %} Dawn mega meny {% endcomment %}
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
