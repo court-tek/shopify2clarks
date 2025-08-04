@@ -1215,11 +1215,9 @@
               </h2>
             {%- endif -%}
           </a>
-          {%- liquid
-            if section.settings.menu != blank
-              render 'navigation-mega-menu'
-            endif
-          %}
+          {% if section.settings.menu != blank %}
+              {% render 'navigation-mega-menu' %}
+          {% endif %}
         </div>
         <div class="header4__right">
           <div class="header4__user">
