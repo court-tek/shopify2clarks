@@ -10,7 +10,7 @@
       {%- for link in section.settings.menu.links -%}
         <li class="header4__list-item has-submenu">
           {%- if link.links != blank -%}
-            <a href="#" class="header4__HeaderMenu-{{ forloop.index }}">
+            <a href="#" class="header4__index{{ forloop.index }}">
               <span class="header4__link-title header4__link-title--sale">{{- link.title | escape -}}</span>
             </a>
             <div class="header4__submenu-wrapper">
@@ -127,7 +127,7 @@
 </div>
 
 {% comment %} Dawn mega meny {% endcomment %}
-<nav class="header__inline-menu">
+{% comment %} <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
       <li>
@@ -213,4 +213,4 @@
       </li>
     {%- endfor -%}
   </ul>
-</nav>
+</nav> {% endcomment %}
