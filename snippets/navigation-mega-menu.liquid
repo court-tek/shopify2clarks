@@ -2,7 +2,7 @@
   Renders a megamenu for the header.
 
   Usage:
-  {% render 'header-mega-menu' %}
+  {% render 'navigation-mega-menu' %}
 {% endcomment %}
 <div class="header4__navigation-wrapper">
   <nav class="header4__navigation">
@@ -10,7 +10,7 @@
       {%- for link in section.settings.menu.links -%}
         <li class="header4__list-item has-submenu">
           {%- if link.links != blank -%}
-            <a href="#" class="header4__index{{ forloop.index }}">
+            <a href="#" class="header4__index {{ forloop.index }}">
               <span class="header4__link-title header4__link-title--sale">{{- link.title | escape -}}</span>
             </a>
             <div class="header4__submenu-wrapper">
@@ -34,47 +34,6 @@
                       </li>
                     {%- endfor -%}
                   </ul>
-
-                  <div class="header4__submenu-item header4__submenu-item2 header4__section-3">
-                    <img
-                      class="header4__menu-image"
-                      alt=""
-                      srcset="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                      src="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                    >
-                    <div class="header4__menu-info">
-                      <span class="header4__copy-heading">summer savings event: up to 50% off</span>
-                      <a class="header4__link-to" href="#">shop now</a>
-                    </div>
-                  </div>
-                  <div class="header4__submenu-item header4__submenu-item3 header4__section-4">
-                    <img
-                      class="header4__menu-image"
-                      alt=""
-                      srcset="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                      src="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                      decoding="async"
-                      data-nimg="intrinsic"
-                    >
-                    <div class="header4__menu-info">
-                      <span class="header4__copy-heading">women's sale</span>
-                      <a class="header4__link-to" href="#">shop now</a>
-                    </div>
-                  </div>
-                  <div class="header4__submenu-item header4__submenu-item4 header4__section-5">
-                    <img
-                      class="header4__menu-image"
-                      alt=""
-                      srcset="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                      src="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                      decoding="async"
-                      data-nimg="intrinsic"
-                    >
-                    <div class="header4__menu-info">
-                      <span class="header4__copy-heading">men's sale</span>
-                      <a class="header4__link-to" href="#">shop now</a>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -84,94 +43,3 @@
     </ul>
   </nav>
 </div>
-
-{% comment %} Dawn mega meny {% endcomment %}
-{% comment %}
-  <nav class="header__inline-menu">
-    <ul class="list-menu list-menu--inline" role="list">
-      {%- for link in section.settings.menu.links -%}
-        <li>
-          {%- if link.links != blank -%}
-            <header-menu>
-              <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
-                <summary
-                  id="HeaderMenu-{{ link.handle }}"
-                  class="header__menu-item list-menu__item link focus-inset"
-                >
-                  <span
-                    {%- if link.child_active %}
-                      class="header__active-menu-item"
-                    {% endif %}
-                  >
-                    {{- link.title | escape -}}
-                  </span>
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
-                </summary>
-                <div
-                  id="MegaMenu-Content-{{ forloop.index }}"
-                  class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
-                  tabindex="-1"
-                >
-                  <ul
-                    class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
-                    role="list"
-                  >
-                    {%- for childlink in link.links -%}
-                      <li>
-                        <a
-                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                          href="{{ childlink.url }}"
-                          class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
-                          {% if childlink.current %}
-                            aria-current="page"
-                          {% endif %}
-                        >
-                          {{ childlink.title | escape }}
-                        </a>
-                        {%- if childlink.links != blank -%}
-                          <ul class="list-unstyled" role="list">
-                            {%- for grandchildlink in childlink.links -%}
-                              <li>
-                                <a
-                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                  href="{{ grandchildlink.url }}"
-                                  class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
-                                  {% if grandchildlink.current %}
-                                    aria-current="page"
-                                  {% endif %}
-                                >
-                                  {{ grandchildlink.title | escape }}
-                                </a>
-                              </li>
-                            {%- endfor -%}
-                          </ul>
-                        {%- endif -%}
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-              </details>
-            </header-menu>
-          {%- else -%}
-            <a
-              id="HeaderMenu-{{ link.handle }}"
-              href="{{ link.url }}"
-              class="header__menu-item list-menu__item link link--text focus-inset"
-              {% if link.current %}
-                aria-current="page"
-              {% endif %}
-            >
-              <span
-                {%- if link.current %}
-                  class="header__active-menu-item"
-                {% endif %}
-              >
-                {{- link.title | escape -}}
-              </span>
-            </a>
-          {%- endif -%}
-        </li>
-      {%- endfor -%}
-    </ul>
-  </nav>
-{% endcomment %}
