@@ -16,7 +16,7 @@
             <div class="header4__submenu-wrapper">
               <div class="header4__submenu-delete">
                 <div class="header4__submenu-item header4__submenu-grid">
-                  <ul class="header4__links-list header4__section-{{ forloop.index }}">
+                  <ul class="header4__links-list">
                     {%- for childlink in link.links -%}
                       <li>
                         <a class="header4__submenu-category" href="{{ childlink.url }}">
@@ -26,7 +26,12 @@
                           <ul>
                             {%- for grandchildlink in childlink.links -%}
                               <li class="header4__sub-list-item">
-                                <a class="header4__sub-link header4__sub-link--underline" href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+                                <a
+                                  class="header4__sub-link header4__sub-link--underline"
+                                  href="{{ grandchildlink.url }}"
+                                >
+                                  {{- grandchildlink.title | escape -}}
+                                </a>
                               </li>
                             {%- endfor -%}
                           </ul>
