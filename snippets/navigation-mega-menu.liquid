@@ -20,7 +20,6 @@
             <a href="#" class="header4__index {{ forloop.index }}">
               <span class="header4__link-title header4__link-title--sale">{{- link.title | escape -}}</span>
             </a>
-
             <div class="header4__submenu-wrapper">
               <div class="header4__submenu-delete">
                 <div class="header4__submenu-item header4__submenu-grid">
@@ -59,7 +58,7 @@
                             {{ block.settings.link_image | image_url: width: 500 | image_tag }}
                           </div>
                           <div className="header4__menu-info">
-                            <span className="header4__copy-heading">men's sale</span>
+                            <span className="header4__copy-heading">{{ block.settings.link_header }}</span>
                             <a className="header4__link-to" href="#">{{ block.settings.link_title }}</a>
                           </div>
                         </a>
