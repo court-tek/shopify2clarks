@@ -24,19 +24,34 @@
             <div class="header4__submenu-wrapper">
               <div class="header4__submenu-delete">
                 <div class="header4__submenu-item header4__submenu-grid">
-                  {%- for block in section.blocks -%}
-                    {%- if link.title == block.settings.link_name -%}
-                      <li class="">
-                        <a class="" href="{{ block.settings.link_url}}">
-                          <div>
-                            {{ block.settings.link_image | image_url: width: 500 | image_tag }}
-                          </div>
-                          <div class="">{{ block.settings.link_title }}</div>
-                        </a>
+                  hey arnold
+                  {%- for childlink in link.links -%}
+                    <ul class="header4__links-list">
+                      <li>
+                        <ul class="header4__spacer">
+                          <li class="header4__header-link-underline">
+                            <a class="header4__submenu-category header4__submenu-category--underline" href="#">
+                              {{- childlink.title | escape -}}
+                            </a>
+                          </li>
+                        </ul>
+                        {%- if childlink.links != blank -%}
+                          <ul>
+                            {%- for grandchildlink in childlink.links -%}
+                              <li class="header4__sub-list-item">
+                                <a
+                                  class="header4__sub-link header4__sub-link--underline"
+                                  href="{{ grandchildlink.url }}"
+                                >
+                                  {{- grandchildlink.title | escape -}}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
                       </li>
-                    {%- endif -%}
-                {%- endfor -%}
-                 
+                    </ul>
+                  {%- endfor -%}
                 </div>
               </div>
 
