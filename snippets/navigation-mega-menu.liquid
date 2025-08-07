@@ -52,22 +52,17 @@
                   {%- endfor -%}
                   {%- for block in section.blocks -%}
                     {%- if link.title == block.settings.link_name -%}
-                      <li class="mega_menu_img">
-                        <a class="mega-menu__link" href="{{ block.settings.link_url}}">
+                      <li class="">
+                        <a class="" href="{{ block.settings.link_url}}">
                           <div>
                             {{ block.settings.link_image | image_url: width: 500 | image_tag }}
                           </div>
-                          <div class="title">{{ block.settings.link_title }}</div>
+                          <div class="">{{ block.settings.link_title }}</div>
                         </a>
                       </li>
                     {%- endif -%}
                   {%- endfor -%}
-                  {% for block in section.blocks %}
-                    {%- case block.type -%}
-                      {%- when 'heading' -%}
-                        <h1>{{ block.settings.heading }}</h1>
-                    {% endcase %}
-                  {% endfor %}
+                  
                 </div>
               </div>
             </div>
