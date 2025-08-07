@@ -24,18 +24,6 @@
             <div class="header4__submenu-wrapper">
               <div class="header4__submenu-delete">
                 <div class="header4__submenu-item header4__submenu-grid">
-                  {%- for block in section.blocks -%}
-                    {%- if link.title == block.settings.link_name -%}
-                      <li class="">
-                        <a class="" href="{{ block.settings.link_url}}">
-                          <div>
-                            {{ block.settings.link_image | image_url: width: 500 | image_tag }}
-                          </div>
-                          <div class="">{{ block.settings.link_title }}</div>
-                        </a>
-                      </li>
-                    {%- endif -%}
-                  {%- endfor -%}
                   {%- for childlink in link.links -%}
                     <ul class="header4__links-list">
                       <li>
@@ -63,10 +51,21 @@
                       </li>
                     </ul>
                   {%- endfor -%}
-                  
-                  
                 </div>
+                {%- for block in section.blocks -%}
+                    {%- if link.title == block.settings.link_name -%}
+                      <li class="">
+                        <a class="" href="{{ block.settings.link_url}}">
+                          <div>
+                            {{ block.settings.link_image | image_url: width: 500 | image_tag }}
+                          </div>
+                          <div class="">{{ block.settings.link_title }}</div>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
               </div>
+
             </div>
           {%- endif -%}
         </li>
