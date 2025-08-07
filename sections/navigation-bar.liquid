@@ -636,7 +636,7 @@
         {% if section.settings.menu != blank %}
           {% render 'navigation-mega-menu' %}
         {% endif %}
-        
+
         <div class="header3__right">
           <div class="header3__user">
             <a href="#">
@@ -724,7 +724,12 @@
               </h2>
             {%- endif -%}
           </a>
-
+          {% for block in section.blocks %}
+            {%- case block.type -%}
+              {%- when 'heading' -%}
+                <h1>{{ block.settings.heading }}</h1>
+            {% endcase %}
+          {% endfor %}
           {% if section.settings.menu != blank %}
             {% render 'navigation-mega-menu' %}
           {% endif %}
@@ -955,6 +960,67 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Hello, world!"
+        }
+      ]
+    },
+    {
+      "type": "menu-image",
+      "name": "Menu image",
+      "settings": [
+        {
+          "label": "Link name",
+          "type": "text",
+          "id": "link_name",
+          "info": "The name of the top-level link that you want the image to appear on."
+        },
+        {
+          "label": "Menu image",
+          "type": "image_picker",
+          "id": "link_image"
+        },
+        {
+          "label": "Title",
+          "type": "text",
+          "id": "link_title"
+        },
+        {
+          "label": "Link",
+          "type": "url",
+          "id": "link_url"
+        }
+      ]
+    },
+    {
+      "type": "menu-button",
+      "name": "Menu Button",
+      "settings": [
+        {
+          "label": "Button Name",
+          "type": "text",
+          "id": "link_name",
+          "info": "The name of the top-level link that you want the image to appear on."
+        },
+        {
+          "label": "Title",
+          "type": "text",
+          "id": "link_title"
+        },
+        {
+          "label": "Link",
+          "type": "url",
+          "id": "link_url"
+        }
+      ]
     }
   ],
   "presets": [

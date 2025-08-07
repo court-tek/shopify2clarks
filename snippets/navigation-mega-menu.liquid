@@ -9,13 +9,13 @@
     <ul class="header4__list">
       {%- for link in section.settings.menu.links -%}
         <li class="header4__list-item has-submenu">
-           {%- assign imagesPresent = false -%}
-                {%- for block in section.blocks -%}
-                {%- if block.settings.link_name == link.title  -%}
-               {%- assign imagesPresent = true -%}
-               {%- endif -%}
+          {%- assign imagesPresent = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.link_name == link.title -%}
+              {%- assign imagesPresent = true -%}
+            {%- endif -%}
           {%- endfor -%}
-          {%- if link.links != blank -%}
+          {%- if link.links != blank or imagesPresent -%}
             <a href="#" class="header4__index {{ forloop.index }}">
               <span class="header4__link-title header4__link-title--sale">{{- link.title | escape -}}</span>
             </a>
@@ -23,11 +23,13 @@
               <div class="header4__submenu-delete">
                 <div class="header4__submenu-item header4__submenu-grid">
                   {%- for childlink in link.links -%}
-                  <ul class="header4__links-list">
+                    <ul class="header4__links-list">
                       <li>
                         <ul class="header4__spacer">
                           <li class="header4__header-link-underline">
-                            <a class="header4__submenu-category header4__submenu-category--underline" href="#">{{- childlink.title | escape -}}</a>
+                            <a class="header4__submenu-category header4__submenu-category--underline" href="#">
+                              {{- childlink.title | escape -}}
+                            </a>
                             <h2>{{ metaobjects.menu_image_link.link_title }}</h2>
                             <h1>{{ shop.metaobjects.menu_image_link.link_header }}</h1>
                           </li>
@@ -48,6 +50,24 @@
                         {%- endif -%}
                       </li>
                     </ul>
+                  {%- endfor -%}
+                  {% for block in section.blocks %}
+                    {%- case block.type -%}
+                      {%- when 'heading' -%}
+                        <h1>{{ block.settings.heading }}</h1>
+                    {% endcase %}
+                  {% endfor %}
+                  {%- for block in section.blocks -%}
+                    {%- if link.title == block.settings.link_name -%}
+                      <li class="mega_menu_img">
+                        <a class="mega-menu__link" href="{{ block.settings.link_url}}">
+                          <div>
+                            {{ block.settings.link_image | image_url: width: 500 | image_tag }}
+                          </div>
+                          <div class="title">{{ block.settings.link_title }}</div>
+                        </a>
+                      </li>
+                    {%- endif -%}
                   {%- endfor -%}
                 </div>
               </div>
