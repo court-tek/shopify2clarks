@@ -15,6 +15,7 @@
               {%- assign imagesPresent = true -%}
             {%- endif -%}
           {%- endfor -%}
+
           {%- if link.links != blank or imagesPresent -%}
             <a href="#" class="header4__index {{ forloop.index }}">
               <span class="header4__link-title header4__link-title--sale">{{- link.title | escape -}}</span>
@@ -23,6 +24,18 @@
             <div class="header4__submenu-wrapper">
               <div class="header4__submenu-delete">
                 <div class="header4__submenu-item header4__submenu-grid">
+                  {%- for block in section.blocks -%}
+                    {%- if link.title == block.settings.link_name -%}
+                      <li class="">
+                        <a class="" href="{{ block.settings.link_url}}">
+                          <div>
+                            {{ block.settings.link_image | image_url: width: 500 | image_tag }}
+                          </div>
+                          <div class="">{{ block.settings.link_title }}</div>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
                   {%- for childlink in link.links -%}
                     <ul class="header4__links-list">
                       <li>
@@ -50,18 +63,7 @@
                       </li>
                     </ul>
                   {%- endfor -%}
-                  {%- for block in section.blocks -%}
-                    {%- if link.title == block.settings.link_name -%}
-                      <li class="">
-                        <a class="" href="{{ block.settings.link_url}}">
-                          <div>
-                            {{ block.settings.link_image | image_url: width: 500 | image_tag }}
-                          </div>
-                          <div class="">{{ block.settings.link_title }}</div>
-                        </a>
-                      </li>
-                    {%- endif -%}
-                  {%- endfor -%}
+                  
                   
                 </div>
               </div>
