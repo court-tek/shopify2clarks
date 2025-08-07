@@ -9,6 +9,12 @@
     <ul class="header4__list">
       {%- for link in section.settings.menu.links -%}
         <li class="header4__list-item has-submenu">
+           {%- assign imagesPresent = false -%}
+                {%- for block in section.blocks -%}
+                {%- if block.settings.link_name == link.title  -%}
+               {%- assign imagesPresent = true -%}
+               {%- endif -%}
+          {%- endfor -%}
           {%- if link.links != blank -%}
             <a href="#" class="header4__index {{ forloop.index }}">
               <span class="header4__link-title header4__link-title--sale">{{- link.title | escape -}}</span>
@@ -22,7 +28,8 @@
                         <ul class="header4__spacer">
                           <li class="header4__header-link-underline">
                             <a class="header4__submenu-category header4__submenu-category--underline" href="#">{{- childlink.title | escape -}}</a>
-                            {{ metaobjects.menu_image_link.link_image }}
+                            <h2>{{ metaobjects.menu_image_link.link_title }}</h2>
+                            <h1>{{ shop.metaobjects.menu_image_link.link_header }}</h1>
                           </li>
                         </ul>
                         {%- if childlink.links != blank -%}
