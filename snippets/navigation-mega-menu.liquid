@@ -24,7 +24,6 @@
             <div class="header4__submenu-wrapper">
               <div class="header4__submenu-delete">
                 <div class="header4__submenu-item header4__submenu-grid">
-                  hey arnold
                   {%- for childlink in link.links -%}
                     <ul class="header4__links-list">
                       <li>
@@ -52,9 +51,23 @@
                       </li>
                     </ul>
                   {%- endfor -%}
+                  {%- for block in section.blocks -%}
+                    {%- if link.title == block.settings.link_name -%}
+                      <div className="header4__links-list">
+                        <a class="" href="{{ block.settings.link_url}}">
+                          <div class="header4__menu-image">
+                            {{ block.settings.link_image | image_url: width: 500 | image_tag }}
+                          </div>
+                          <div className="header4__menu-info">
+                            <span className="header4__copy-heading">men's sale</span>
+                            <a className="header4__link-to" href="#">{{ block.settings.link_title }}</a>
+                          </div>
+                        </a>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
                 </div>
               </div>
-
             </div>
           {%- endif -%}
         </li>
