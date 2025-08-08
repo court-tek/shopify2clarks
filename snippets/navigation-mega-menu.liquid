@@ -15,7 +15,6 @@
               {%- assign imagesPresent = true -%}
             {%- endif -%}
           {%- endfor -%}
-
           {%- if link.links != blank or imagesPresent -%}
             <a href="#" class="header4__index {{ forloop.index }}">
               <span class="header4__link-title header4__link-title--sale">{{- link.title | escape -}}</span>
@@ -55,14 +54,12 @@
                   {% comment %} image links {% endcomment %}
                   {%- for block in section.blocks -%}
                     {%- if link.title == block.settings.link_name -%}
-                      <div className="header4__links-list">
-                        <a class="" href="{{ block.settings.link_url}}">
-                            {{ block.settings.link_image | image_url: width: 384 | image_tag: class: 'header4__menu-image', widths: '256, 384', loading: 'lazy' }}
-                          <div className="header4__menu-info">
-                            <span className="header4__copy-heading">{{ block.settings.link_header }}</span>
-                            <a className="header4__link-to" href="#">{{ block.settings.link_title }}</a>
+                      <div class="header4__links-list">
+                          {{ block.settings.link_image | image_url: width: 384 | image_tag: class: 'header4__menu-image', loading: 'lazy' }}
+                          <div class="header4__menu-info">
+                            <span class="header4__copy-heading">{{ block.settings.link_header }}</span>
+                            <a class="header4__link-to" href="{{ block.settings.link_url}}">{{ block.settings.link_title }}</a>
                           </div>
-                        </a>
                       </div>
                     {%- endif -%}
                   {%- endfor -%}
