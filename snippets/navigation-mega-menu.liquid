@@ -9,13 +9,13 @@
     <ul class="header4__list">
       {%- for link in section.settings.menu.links -%}
         <li class="header4__list-item has-submenu">
-          {%- assign imagesPresent = false -%}
+          {%- assign images_present = false -%}
           {%- for block in section.blocks -%}
             {%- if block.settings.link_name == link.title -%}
-              {%- assign imagesPresent = true -%}
+              {%- assign images_present = true -%}
             {%- endif -%}
           {%- endfor -%}
-          {%- if link.links != blank or imagesPresent -%}
+          {%- if link.links != blank or images_present -%}
             <a href="#" class="header4__index {{ forloop.index }}">
               <span class="header4__link-title header4__link-title--sale">{{- link.title | escape -}}</span>
             </a>
@@ -55,7 +55,7 @@
                   {%- for block in section.blocks -%}
                     {%- if link.title == block.settings.link_name -%}
                       <div class="header4__links-list">
-                          {{ block.settings.link_image | image_url: width: 500 | image_tag: class: 'header4__menu-image', loading: 'lazy' }}
+                          {{ block.settings.link_image | image_url: width: 190, height: 285| image_tag }}
                           <div class="header4__menu-info">
                             <span class="header4__copy-heading">{{ block.settings.link_header }}</span>
                             <a class="header4__link-to" href="{{ block.settings.link_url}}">{{ block.settings.link_title }}</a>
