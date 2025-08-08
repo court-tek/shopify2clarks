@@ -23,6 +23,7 @@
             <div class="header4__submenu-wrapper">
               <div class="header4__submenu-delete">
                 <div class="header4__submenu-item header4__submenu-grid">
+                  {% comment %} normal links {% endcomment %}
                   {%- for childlink in link.links -%}
                     <ul class="header4__links-list">
                       <li>
@@ -50,12 +51,14 @@
                       </li>
                     </ul>
                   {%- endfor -%}
+
+                  {% comment %} image links {% endcomment %}
                   {%- for block in section.blocks -%}
                     {%- if link.title == block.settings.link_name -%}
                       <div className="header4__links-list">
                         <a class="" href="{{ block.settings.link_url}}">
                           <div class="header4__menu-image">
-                            {{ block.settings.link_image | image_url: width: 500 | image_tag }}
+                            {{ block.settings.link_image | image_url: width: 384 | image_tag }}
                           </div>
                           <div className="header4__menu-info">
                             <span className="header4__copy-heading">{{ block.settings.link_header }}</span>
