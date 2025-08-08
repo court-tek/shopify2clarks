@@ -55,7 +55,7 @@
                   {%- for block in section.blocks -%}
                     {%- if link.title == block.settings.link_name -%}
                       <div class="header4__links-list">
-                          {{ block.settings.link_image | image_url: width: 384 | image_tag: class: 'header4__menu-image', loading: 'lazy' }}
+                          {{ block.settings.link_image | image_url: width: 500 | image_tag: class: '', loading: 'lazy' }}
                           <div class="header4__menu-info">
                             <span class="header4__copy-heading">{{ block.settings.link_header }}</span>
                             <a class="header4__link-to" href="{{ block.settings.link_url}}">{{ block.settings.link_title }}</a>
