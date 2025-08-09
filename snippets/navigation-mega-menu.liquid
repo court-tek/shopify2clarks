@@ -21,7 +21,7 @@
             </a>
             <div class="header4__submenu-wrapper">
               <div class="header4__submenu-delete">
-                <div class="header4__submenu-item header4__submenu-grid">
+                <div class="header4__submenu-item header4__submenu-grid header4__submenu-grid--{{ link.title }}">
                   {% comment %} normal links {% endcomment %}
                   {%- for childlink in link.links -%}
                     <ul class="header4__links-list">
