@@ -12,10 +12,10 @@
       <h2 className="header3__logo-text header3__logo-text--fs-50">clarks</h2>
       */}
     </a>
-    
+
     {%- liquid
       if section.settings.menu != blank
-          render 'navigation-mega-menu'
+        render 'navigation-mega-menu'
       endif
     %}
 
@@ -118,7 +118,7 @@
         {
           "value": "mega",
           "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
-        },
+        }
       ],
       "default": "mega",
       "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
@@ -236,6 +236,33 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "menu-image",
+      "name": "Menu Image Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_name",
+          "label": "Link Name",
+          "info": "The name of the top-level link that you want the image to appear on."
+        },
+        {
+          "type": "image_picker",
+          "id": "menu_image",
+          "label": "Menu Image"
+        },
+        {
+          "type": "text",
+          "id": "menu_image_header",
+          "label": "Menu Image Header"
+        },
+        {
+          "type": "url",
+          "id": "menu_image_url",
+          "label": "Menu Image Link"
+        }
+      ]
     }
   ],
   "presets": [
