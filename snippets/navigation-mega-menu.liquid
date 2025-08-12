@@ -5,7 +5,7 @@
   {% render 'header-mega-menu' %}
 {% endcomment %}
 
-{% for link in linklists['main-menu'].links -%}
+{% comment %} {% for link in linklists['main-menu'].links -%}
   {% if link.title == 'Sale' -%}
     {%- for childlink in link.links -%}
       {% if childlink.title == 'All Sale' -%}
@@ -15,8 +15,9 @@
       {%- endif %}
     {%- endfor -%}
   {%- endif %}
-{%- endfor %}
-
+{%- endfor %} {% endcomment %}
+{% assign menu = linklists.main-menu %}
+{{ menu.title }}: {{ menu.levels }}
 <div className="header3__navigation-wrapper">
   <nav className="header3__navigation">
     <ul className="header3__list">
