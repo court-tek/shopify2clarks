@@ -29,22 +29,26 @@
             <div className="header3__submenu-wrapper">
               <div className="header3__submenu-grid">
                 <div className="header3__submenu-item header3__submenu-item1">
-                  <ul className="header3__links-list">
-                    {%- for childlink in link.links -%}
-                      <li>
-                        <h2 className="header3__submenu-category">{{- childlink.title | escape -}}</h2>
-                        {%- if childlink.links != blank -%}
-                          <ul>
-                            {%- for grandchildlink in childlink.links -%}
-                              <li className="header3__sub-list-item">
-                                <a className="header3__sub-link header3__sub-link--underline" href="#">{{- granchildlink.title | escape -}}</a>
-                              </li>
-                            {%- endfor -%}
-                          </ul>
-                        {%- endif -%}
-                      </li>
-                    {%- endfor -%}
-                  </ul>
+                  {% if link.title == 'Sale' -%}
+                    <ul className="header3__links-list">
+                      {%- for childlink in link.links -%}
+                        <li>
+                          <h2 className="header3__submenu-category">{{- childlink.title | escape -}}</h2>
+                          {%- if childlink.links != blank -%}
+                            <ul>
+                              {%- for grandchildlink in childlink.links -%}
+                                <li className="header3__sub-list-item">
+                                  <a className="header3__sub-link header3__sub-link--underline" href="#">
+                                    {{- granchildlink.title | escape -}}
+                                  </a>
+                                </li>
+                              {%- endfor -%}
+                            </ul>
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif %}
                   <ul className="header3__links-list">
                     <li>
                       <h2 className="header3__submenu-category">limited time offers</h2>
@@ -66,6 +70,8 @@
                   <img
                     className="header3__menu-image"
                     alt=""
+                    width=""
+                    height=""
                     srcset="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
                     src="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
                   >
@@ -78,6 +84,8 @@
                   <img
                     className="header3__menu-image"
                     alt=""
+                    width=""
+                    height=""
                     srcset="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
                     src="https://cdn.media.amplience.net/i/clarks/W_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
                     decoding="async"
@@ -92,6 +100,8 @@
                   <img
                     className="header3__menu-image"
                     alt=""
+                    width=""
+                    height=""
                     srcset="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
                     src="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
                     decoding="async"
