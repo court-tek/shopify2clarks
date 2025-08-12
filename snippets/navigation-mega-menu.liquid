@@ -5,28 +5,6 @@
   {% render 'header-mega-menu' %}
 {% endcomment %}
 
-{% comment %}
-  {% for link in linklists['main-menu'].links -%}
-    {% if link.title == 'Sale' -%}
-      {%- for childlink in link.links -%}
-        {% if childlink.title == 'All Sale' -%}
-          {%- for grandchildlink in childlink.links -%}
-            {{- grandchildlink.title | escape -}}
-          {%- endfor -%}
-        {%- endif %}
-      {%- endfor -%}
-    {%- endif %}
-  {%- endfor %}
-{% endcomment %}
-{% assign menu = linklists['main-menu'] %}
-{{ menu.title }}: {{ menu.levels }}
-{% for link in section.settings.menu.links %}
-  {% for childlink in link.links %}
-    {%- if forloop.index0 == 0 -%}
-      {{ childlink.title }}
-    {% endif %}
-  {% endfor %}
-{% endfor %}
 <div className="header3__navigation-wrapper">
   <nav className="header3__navigation">
     <ul className="header3__list">
