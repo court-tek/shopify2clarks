@@ -179,7 +179,7 @@
                 </div>
                 <div className="header3__submenu-item header3__submenu-item3">
                   {%- for block in section.blocks -%}
-                    {%- if forloop.index0 == 0 -%}
+                    {%- if forloop.index0 == 1 -%}
                       {%- if link.title == block.settings.link_name -%}
                         <li class="mega_menu_img">
                           {{ block.settings.menu_image | image_url: width: 190 | image_tag }}
@@ -192,7 +192,7 @@
                         </li>
                       {%- endif -%}
                     {%- endif -%}
-                  {%- endfor -%}`
+                  {%- endfor -%}
                 </div>
                 <div className="header3__submenu-item header3__submenu-item4">
                   <img
