@@ -163,28 +163,29 @@
                 <div className="header3__submenu-item header3__submenu-item2">
                   {%- for block in section.blocks -%}
                     {%- if link.title == block.settings.link_name -%}
-                        <li class="mega_menu_img">
-                          <a class="mega-menu__link" href="{{ block.settings.link_url}}">
-                            <div>
-                              {{ block.settings.menu_image | image_url: width: 190 | image_tag }}
-                            </div>
-                            <div class="title">{{ block.settings.link_title }}</div>
-                          </a>
-                        </li>
-                      {%- endif -%}
+                      <li class="mega_menu_img">
+                          {{ block.settings.menu_image | image_url: width: 190 | image_tag }}
+                        <div className="header3__menu-info">
+                          <span className="header3__copy-heading">summer savings event: up to 50% off</span>
+                          <a className="header3__link-to" href="#">shop now</a>
+                        </div>
+                      </li>
+                    {%- endif -%}
                   {%- endfor -%}
-                  {% comment %} <img
-                    className="header3__menu-image"
-                    alt=""
-                    width=""
-                    height=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                  >
-                  <div className="header3__menu-info">
-                    <span className="header3__copy-heading">summer savings event: up to 50% off</span>
-                    <a className="header3__link-to" href="#">shop now</a>
-                  </div> {% endcomment %}
+                  {% comment %}
+                    <img
+                      className="header3__menu-image"
+                      alt=""
+                      width=""
+                      height=""
+                      srcset="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
+                      src="https://cdn.media.amplience.net/i/clarks/SS25_US_EOSS_NAV_CARD?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
+                    >
+                    <div className="header3__menu-info">
+                      <span className="header3__copy-heading">summer savings event: up to 50% off</span>
+                      <a className="header3__link-to" href="#">shop now</a>
+                    </div>
+                  {% endcomment %}
                 </div>
                 <div className="header3__submenu-item header3__submenu-item3">
                   <img
