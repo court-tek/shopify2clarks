@@ -195,20 +195,21 @@
                   {%- endfor -%}
                 </div>
                 <div className="header3__submenu-item header3__submenu-item4">
-                  <img
-                    className="header3__menu-image"
-                    alt=""
-                    width=""
-                    height=""
-                    srcset="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=256&amp;h=285&amp;qlt=default 1x, https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default 2x"
-                    src="https://cdn.media.amplience.net/i/clarks/M_Sale?fmt=auto&amp;img404=imageNotFound&amp;w=384&amp;h=285&amp;qlt=default"
-                    decoding="async"
-                    data-nimg="intrinsic"
-                  >
-                  <div className="header3__menu-info">
-                    <span className="header3__copy-heading">men's sale</span>
-                    <a className="header3__link-to" href="#">shop now</a>
-                  </div>
+                  {%- for block in section.blocks -%}
+                    {%- if forloop.index0 == 2 -%}
+                      {%- if link.title == block.settings.link_name -%}
+                        <li class="mega_menu_img">
+                          {{ block.settings.menu_image | image_url: width: 190 | image_tag }}
+                          <div className="header3__menu-info">
+                            <span className="header3__copy-heading">{{ block.settings.link_header }}</span>
+                            <a className="header3__link-to" href="{{ block.settings.link_url }}">
+                              {{- block.settings.link_title -}}
+                            </a>
+                          </div>
+                        </li>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
                 </div>
               </div>
             </div>
