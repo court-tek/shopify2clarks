@@ -30,7 +30,7 @@
             <div className="header3__submenu-wrapper">
               <div className="header3__submenu-grid">
                 <div className="header3__submenu-item header3__submenu-item1">
-                  {% if childlink.title == 'styles $74.99 and under' -%}
+                  {% if childlink.title == '' -%}
                     <ul className="header3__links-list">
                       {%- for childlink in link.links -%}
                         <li>
@@ -50,7 +50,7 @@
                       {%- endfor -%}
                     </ul>
                   {%- endif %}
-                  <ul className="header3__links-list">
+                  {% comment %} <ul className="header3__links-list">
                     <li>
                       <h2 className="header3__submenu-category">limited time offers</h2>
                       <ul>
@@ -65,7 +65,7 @@
                         </li>
                       </ul>
                     </li>
-                  </ul>
+                  </ul> {% endcomment %}
                 </div>
                 <div className="header3__submenu-item header3__submenu-item2">
                   <img
