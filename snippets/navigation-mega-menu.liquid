@@ -5,191 +5,56 @@
   {% render 'header-mega-menu' %}
 {% endcomment %}
 
-<div className="header3__navigation-wrapper">
-  <nav className="header3__navigation">
-    <ul className="header3__list">
+{%- liquid
+  assign link_class = 'sale';
+  if link.title = 'Sale'
+    assign link_class = 'sale';
+  endif
+-%}
+
+<div class="header3__navigation-wrapper">
+  <nav class="header3__navigation">
+    <ul class="header3__list">
       {%- for link in section.settings.menu.links -%}
-        <li className="header3__list-item has-submenu">
+        
+        <li class="header3__list-item has-submenu">
           {%- if link.links != blank -%}
             <a href="#">
-              <span className="header3__link-title">{{- link.title | escape -}}</span>
+              <span class="header3__link-title">{{- link.title | escape -}}</span>
             </a>
-            <div className="header3__submenu-wrapper">
-              <div className="header3__submenu-grid">
-                <div className="header3__submenu-item header3__submenu-item1">
-                  <ul className="header3__links-list">
-                    {%- for childlink in link.links -%}
-                      {%- if forloop.index0 == 0 -%}
-                        <li>
-                          <h2 className="header3__submenu-category">{{- childlink.title | escape -}}</h2>
-                          {%- if childlink.links != blank -%}
-                            <ul>
-                              {%- for grandchildlink in childlink.links -%}
-                                <li className="header3__sub-list-item">
-                                  <a className="header3__sub-link header3__sub-link--underline" href="#">
-                                    {{- grandchildlink.title | escape -}}
-                                  </a>
-                                </li>
-                              {%- endfor -%}
-                            </ul>
-                          {%- endif -%}
-                        </li>
-                      {% endif %}
-                    {%- endfor -%}
-                  </ul>
-                  <ul className="header3__links-list">
-                    {%- for childlink in link.links -%}
-                      {%- if forloop.index0 == 1 -%}
-                        <li>
-                          <h2 className="header3__submenu-category">{{- childlink.title | escape -}}</h2>
-                          {%- if childlink.links != blank -%}
-                            <ul>
-                              {%- for grandchildlink in childlink.links -%}
-                                <li className="header3__sub-list-item">
-                                  <a className="header3__sub-link header3__sub-link--underline" href="#">
-                                    {{- grandchildlink.title | escape -}}
-                                  </a>
-                                </li>
-                              {%- endfor -%}
-                            </ul>
-                          {%- endif -%}
-                        </li>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </ul>
-                  <ul className="header3__links-list">
-                    {%- for childlink in link.links -%}
-                      {%- if forloop.index0 == 2 -%}
-                        <li>
-                          <h2 className="header3__submenu-category">{{- childlink.title | escape -}}</h2>
-                          {%- if childlink.links != blank -%}
-                            <ul>
-                              {%- for grandchildlink in childlink.links -%}
-                                <li className="header3__sub-list-item">
-                                  <a className="header3__sub-link header3__sub-link--underline" href="#">
-                                    {{- grandchildlink.title | escape -}}
-                                  </a>
-                                </li>
-                              {%- endfor -%}
-                            </ul>
-                          {%- endif -%}
-                        </li>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </ul>
-                  <ul className="header3__links-list">
-                    {%- for childlink in link.links -%}
-                      {%- if forloop.index0 == 3 -%}
-                        <li>
-                          <h2 className="header3__submenu-category">{{- childlink.title | escape -}}</h2>
-                          {%- if childlink.links != blank -%}
-                            <ul>
-                              {%- for grandchildlink in childlink.links -%}
-                                <li className="header3__sub-list-item">
-                                  <a className="header3__sub-link header3__sub-link--underline" href="#">
-                                    {{- grandchildlink.title | escape -}}
-                                  </a>
-                                </li>
-                              {%- endfor -%}
-                            </ul>
-                          {%- endif -%}
-                        </li>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </ul>
-                  <ul className="header3__links-list">
-                    {%- for childlink in link.links -%}
-                      {%- if forloop.index0 == 4 -%}
-                        <li>
-                          <h2 className="header3__submenu-category">{{- childlink.title | escape -}}</h2>
-                          {%- if childlink.links != blank -%}
-                            <ul>
-                              {%- for grandchildlink in childlink.links -%}
-                                <li className="header3__sub-list-item">
-                                  <a className="header3__sub-link header3__sub-link--underline" href="#">
-                                    {{- grandchildlink.title | escape -}}
-                                  </a>
-                                </li>
-                              {%- endfor -%}
-                            </ul>
-                          {%- endif -%}
-                        </li>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </ul>
-                  <ul className="header3__links-list">
-                    {%- for childlink in link.links -%}
-                      {%- if forloop.index0 == 5 -%}
-                        <li>
-                          <h2 className="header3__submenu-category">{{- childlink.title | escape -}}</h2>
-                          {%- if childlink.links != blank -%}
-                            <ul>
-                              {%- for grandchildlink in childlink.links -%}
-                                <li className="header3__sub-list-item">
-                                  <a className="header3__sub-link header3__sub-link--underline" href="#">
-                                    {{- grandchildlink.title | escape -}}
-                                  </a>
-                                </li>
-                              {%- endfor -%}
-                            </ul>
-                          {%- endif -%}
-                        </li>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </ul>
-                </div>
-                <div className="header3__submenu-item header3__submenu-item2">
-                  {%- for block in section.blocks -%}
-                    {%- if forloop.index0 == 0 -%}
-                      {%- if link.title == block.settings.link_name -%}
-                        <li class="mega_menu_img">
-                          {{ block.settings.menu_image | image_url: width: 190 | image_tag }}
-                          <div className="header3__menu-info">
-                            <span className="header3__copy-heading">{{ block.settings.link_header }}</span>
-                            <a className="header3__link-to" href="{{ block.settings.link_url }}">
-                              {{- block.settings.link_title -}}
+
+            <div class="header3__submenu-wrapper">
+              <ul class="header3__submenu-main-list header3__submenu-main-list--{{ link_class }}">
+                {%- for childlink in link.links -%}
+                  <li class="header3__submenu-list-item header3__submenu-list-item--{{ link_class }}">
+                    <h2 class="header3__submenu-category">{{- childlink.title | escape -}}</h2>
+                    {%- if childlink.links != blank -%}
+                      <ul>
+                        {%- for grandchildlink in childlink.links -%}
+                          <li class="header3__sub-list-item">
+                            <a class="header3__sub-link header3__sub-link--underline" href="#">
+                              {{- grandchildlink.title | escape -}}
                             </a>
-                          </div>
-                        </li>
-                      {%- endif -%}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
                     {%- endif -%}
-                  {%- endfor -%}
-                </div>
-                <div className="header3__submenu-item header3__submenu-item3">
-                  {%- for block in section.blocks -%}
-                    {%- if forloop.index0 == 1 -%}
-                      {%- if link.title == block.settings.link_name -%}
-                        <li class="mega_menu_img">
-                          {{ block.settings.menu_image | image_url: width: 190 | image_tag }}
-                          <div className="header3__menu-info">
-                            <span className="header3__copy-heading">{{ block.settings.link_header }}</span>
-                            <a className="header3__link-to" href="{{ block.settings.link_url }}">
-                              {{- block.settings.link_title -}}
-                            </a>
-                          </div>
-                        </li>
-                      {%- endif -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                </div>
-                <div className="header3__submenu-item header3__submenu-item4">
-                  {%- for block in section.blocks -%}
-                    {%- if forloop.index0 == 2 -%}
-                      {%- if link.title == block.settings.link_name -%}
-                        <li class="mega_menu_img">
-                          {{ block.settings.menu_image | image_url: width: 190 | image_tag }}
-                          <div className="header3__menu-info">
-                            <span className="header3__copy-heading">{{ block.settings.link_header }}</span>
-                            <a className="header3__link-to" href="{{ block.settings.link_url }}">
-                              {{- block.settings.link_title -}}
-                            </a>
-                          </div>
-                        </li>
-                      {%- endif -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                </div>
-              </div>
+                  </li>
+                {%- endfor -%}
+                {%- for block in section.blocks -%}
+                  {%- if link.title == block.settings.link_name -%}
+                    <li class="header3__submenu-item header3__submenu-list-item header3__submenu-list-item--">
+                      {{ block.settings.menu_image | image_url: width: 190 | image_tag }}
+                      <div class="header3__menu-info">
+                        <span class="header3__copy-heading">{{ block.settings.link_header }}</span>
+                        <a class="header3__link-to" href="{{ block.settings.link_url }}">
+                          {{- block.settings.link_title -}}
+                        </a>
+                      </div>
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
             </div>
           {%- endif -%}
         </li>
