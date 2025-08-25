@@ -6,9 +6,9 @@
 {% endcomment %}
 
 {%- liquid
-  assign link_class = 'sale'
-  if link.title = 'Sale'
-    assign link_class = 'sale'
+  assign link_class = sale
+  if link.title = Sale
+    assign link_class = sale
   endif
 -%}
 
