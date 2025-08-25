@@ -9,6 +9,8 @@
   assign link_class = 'sale'
   if link.title == 'Sale'
     assign link_class = 'sale'
+  elsif link.title == 'New'
+    assign link_class = 'new'
   endif
 -%}
 
@@ -16,7 +18,6 @@
   <nav class="header3__navigation">
     <ul class="header3__list">
       {%- for link in section.settings.menu.links -%}
-        
         <li class="header3__list-item has-submenu">
           {%- if link.links != blank -%}
             <a href="#">
